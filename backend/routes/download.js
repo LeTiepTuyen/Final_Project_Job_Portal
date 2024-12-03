@@ -2,7 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const { default: mongoose } = require("mongoose");
-const ApplicantSchema = mongoose.model("JobApplicantInfo");
+const ApplicantSchema = mongoose.model("jobapplicantinfos");
 
 const router = express.Router();
 
@@ -46,9 +46,7 @@ router.get("/resume/:id", async (req, res) => {
       });
     }
     if (!applicant.resume) {
-      return res
-        .status(404)
-        .json({ message: "Resume not found for this applicant" });
+      return res.status(404).json({ message: "Resume not found for this applicant" });
     }
     const filePath = path.join(__dirname, "../files", applicant.resume);
     console.log("filePath:", filePath);

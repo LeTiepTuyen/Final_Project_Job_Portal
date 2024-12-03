@@ -1,7 +1,7 @@
 const multer = require("multer");
 const express = require("express");
-const { default: mongoose } = require("mongoose");
-const ApplicantSchema = mongoose.model("JobApplicantInfo");
+const mongoose = require("mongoose");
+const ApplicantSchema = mongoose.model("jobapplicantinfos");
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -44,7 +44,5 @@ router.post("/resume", upload.single("resume"), async (req, res) => {
 
   console.log(storage);
 });
-
-
 
 module.exports = router;

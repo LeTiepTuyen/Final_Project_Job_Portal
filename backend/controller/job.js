@@ -169,9 +169,6 @@ const getJobList = async (req, res) => {
     // sortParams = parseSortParameters(req.query.desc, 1);
   }
 
-  console.log(findParams);
-  console.log(sortParams);
-
   // Aggregate pipeline for querying jobs
   let arr = [
     {
@@ -204,8 +201,6 @@ const getJobList = async (req, res) => {
       },
     ];
   }
-
-  console.log(arr);
 
   // Execute the aggregation query
   Job.aggregate(arr)
@@ -316,8 +311,7 @@ const applyJob = async (req, res) => {
         (acceptedJob !== null && acceptedJob.status === "accepted")
       ) {
         res.status(400).json({
-          message:
-            "You already have an accepted job. Hence you cannot apply for a new one.",
+          message: "You already have an accepted job. Hence you cannot apply for a new one.",
         });
         return;
       }
@@ -334,10 +328,7 @@ const applyJob = async (req, res) => {
       })
         .then((appliedApplication) => {
           console.log(appliedApplication);
-          if (
-            appliedApplication !== null &&
-            appliedApplication.status === "applied"
-          ) {
+          if (appliedApplication !== null && appliedApplication.status === "applied") {
             res.status(400).json({
               message: "You have already applied for this job",
             });
@@ -403,15 +394,13 @@ const applyJob = async (req, res) => {
                                 });
                             } else {
                               res.status(400).json({
-                                message:
-                                  "You already have an accepted job. Hence you cannot apply.",
+                                message: "You already have an accepted job. Hence you cannot apply.",
                               });
                             }
                           });
                         } else {
                           res.status(400).json({
-                            message:
-                              "You have 10 active applications. Hence you cannot apply.",
+                            message: "You have 10 active applications. Hence you cannot apply.",
                           });
                         }
                       })

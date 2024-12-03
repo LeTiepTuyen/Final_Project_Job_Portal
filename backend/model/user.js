@@ -89,13 +89,10 @@ schema.methods = {
   },
   createPasswordChangedToken: function () {
     const resetToken = crypto.randomBytes(32).toString("hex");
-    this.passwordResetToken = crypto
-      .createHash("sha256")
-      .update(resetToken)
-      .digest("hex");
+    this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex");
     this.passwordResetExpires = Date.now() + 5 * 60 * 1000;
     return resetToken;
   },
 };
 
-module.exports = mongoose.model("UserAuth", schema);
+module.exports = mongoose.model("userauths", schema);

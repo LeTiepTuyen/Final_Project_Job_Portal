@@ -33,4 +33,4 @@ let schema = new mongoose.Schema(
   { collation: { locale: "en" } }
 );
 
-module.exports = mongoose.model("RecruiterInfo", schema);
+module.exports = mongoose.model("recruiterinfos", schema);
